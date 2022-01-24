@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Familudget</title>
+</head>
+
+<body>
+    <header class="flex-column">
+        <div class="header__topbar flex-row">
+            <div class=" header__logo logo ">
+                <h1>familudget</h1>
+            </div>
+            <label class="header__account flex-row" for="navbar-checkbox">
+                <img class="account__img" src="./assets/account-photo.jpeg" alt="">
+                <p class="account__name">Peter</p>
+            </label>
+        </div>
+        <input class="header__checkbox" type="checkbox" id="navbar-checkbox">
+        <nav class="header__nav flex-column">
+            <ul class="nav__navigation flex-column">
+                <li class=" btn btn--outline"><a href=" #">Settings</a></li>
+                <li class="btn btn--outline"><a href="#">Log Out</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="flex-column">
+        <section class="main__card-section">
+            <div class="main__card flex-column">
+                <div class="card-section flex-column">
+
+
+                    <p class="card-section__title">Choose a Month:</p>
+                    <div class="main__header card flex-column">
+                        <div class="main__monthselector">
+                            <select name="months" id="months" class="monthselector__select">
+                                <option value="1" class="monthselector__option">January</option>
+                                <option value="2" class="monthselector__option">February</option>
+                                <option value="3" class="monthselector__option">March</option>
+                                <option value="4" class="monthselector__option">April</option>
+                                <option value="5" class="monthselector__option">May</option>
+                                <option value="6" class="monthselector__option">June</option>
+                                <option value="7" class="monthselector__option">July</option>
+                                <option value="8" class="monthselector__option">August</option>
+                                <option value="9" class="monthselector__option">September</option>
+                                <option value="10" class="monthselector__option">October</option>
+                                <option value="11" class="monthselector__option">November</option>
+                                <option value="12" class="monthselector__option">December</option>
+                            </select>
+                        </div>
+                        <div class="main__recap flex-row">
+                            <div class="recap__item recap__in flex-column">
+                                <p>Total In:</p>
+                                <p>$1,420.16</p>
+                            </div>
+                            <div class="recap__item recap__out flex-column">
+                                <p>Total Out:</p>
+                                <p>$1,010.67</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-section flex-column">
+                    <p class="card-section__title">Summury:</p>
+                    <div class="main__categories card grid">
+                        <div class="categories__category flex-column" id="category-1">
+                            <img src="./assets/shopping-cart.png" alt="">
+                            <p>$324.89</p>
+                        </div>
+                        <div class="categories__category flex-column" id="category-2">
+                            <img src="./assets/shopping-cart.png" alt="">
+                            <p>$324.89</p>
+                        </div>
+                        <div class="categories__category flex-column" id="category-3">
+                            <img src="./assets/shopping-cart.png" alt="">
+                            <p>$324.89</p>
+                        </div>
+                        <div class="categories__category flex-column" id="category-4">
+                            <img src="./assets/shopping-cart.png" alt="">
+                            <p>$324.89</p>
+                        </div>
+                        <div class="categories__category flex-column" id="category-5">
+                            <img src="./assets/shopping-cart.png" alt="">
+                            <p>$324.89</p>
+                        </div>
+                        <div class="categories__category flex-column" id="category-6">
+                            <img src="./assets/shopping-cart.png" alt="">
+                            <p>$324.89</p>
+                        </div>
+                        <div class="categories_center flex-column">
+                            <p>Remaining</p>
+                            <p>$1,098.76</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="add-new-item card flex-column">
+            <input type="checkbox" class="add-new-item__checkbox" id="add-new-item__checkbox">
+            <label class="add-new-item__label" for="add-new-item__checkbox">Add new Item</label>
+            <form class="add-new-item__form flex-column">
+                <div class="form__grid grid">
+                    <input type="text" name="description" placeholder="Garden Shop">
+                    <select name="add-new-item__select">
+                        <option value="01" class="select__option">Farmacy</option>
+                        <option value="02" class="select__option">Supermarket</option>
+                        <option value="03" class="select__option">House</option>
+                    </select>
+                    <div class="add-new-item__radio flex-row">
+                        <div id="item__radio__1" class="">
+                            <input type="radio" name="add-new-item__input" id="in">
+                            <label class="radio__label btn btn--primary" for="in">IN</label>
+                        </div>
+                        <div id="item__radio__2" class="">
+                            <input type="radio" name="add-new-item__input" id="out">
+                            <label class="radio__label btn btn--primary" for="out">OUT</label>
+                        </div>
+                    </div>
+                    <input type="number" name="total" placeholder="12.98">
+                </div>
+                <div class="add-new-item__actions flex-row">
+                    <input class="actions__btn btn btn--primary" type="submit" value="Done">
+                </div>
+            </form>
+        </section>
+        <section class="main__card-section-list flex-column">
+
+
+            <div class="card-section">
+                <p class="card-section__title">December 12th</p>
+                <div class="card-section-list__card-list card flex-column">
+
+                    <div class="card-list__item flex-row">
+                        <div class="card__description flex-row">
+                            <img src="./assets/shopping-cart.png" alt="">
+                            <p>Famila Superstore</p>
+                        </div>
+                        <p class="card__total">$12.90</p>
+                    </div>
+
+                    <div class="card-list__item flex-row">
+                        <div class="card__description flex-row">
+                            <img src="./assets/shopping-cart.png" alt="">
+                            <p>Famila Superstore</p>
+                        </div>
+                        <p class="card__total">$12.90</p>
+                    </div>
+
+                    <div class="card-list__item flex-row">
+                        <div class="card__description flex-row">
+                            <img src="./assets/shopping-cart.png" alt="">
+                            <p>Famila Superstore</p>
+                        </div>
+                        <p class="card__total">$12.90</p>
+                    </div>
+
+                </div>
+
+
+            </div>
+            <div class="card-section">
+                <p class="card-section__title">December 12th</p>
+                <div class="card-section-list__card-list card flex-column">
+                    <div class="card-list__item flex-row">
+
+                        <div class="card__description flex-row">
+                            <img src="./assets/shopping-cart.png" alt="">
+                            <p>Famila Superstore</p>
+                        </div>
+                        <p class="card__total">$12.90</p>
+                    </div>
+
+
+                    <div class="card-list__item flex-row">
+                        <div class="card__description flex-row">
+                            <img src="./assets/shopping-cart.png" alt="">
+                            <p>Famila Superstore</p>
+                        </div>
+                        <p class="card__total">$12.90</p>
+                    </div>
+
+                </div>
+
+
+            </div>
+            <div class="card-section">
+                <p class="card-section__title">December 12th</p>
+                <div class="card-section-list__card-list card flex-column">
+
+                    <div class="card-list__item flex-row">
+                        <div class="card__description flex-row">
+                            <img src="./assets/shopping-cart.png" alt="">
+                            <p>Famila Superstore</p>
+                        </div>
+                        <p class="card__total">$12.90</p>
+                    </div>
+
+
+                    <div class="card-list__item flex-row">
+                        <div class="card__description flex-row">
+                            <img src="./assets/shopping-cart.png" alt="">
+                            <p>Famila Superstore</p>
+                        </div>
+                        <p class="card__total">$12.90</p>
+                    </div>
+
+
+                    <div class="card-list__item flex-row">
+                        <div class="card__description flex-row">
+                            <img src="./assets/shopping-cart.png" alt="">
+                            <p>Famila Superstore</p>
+                        </div>
+                        <p class="card__total">$12.90</p>
+                    </div>
+
+
+                    <div class="card-list__item flex-row">
+                        <div class="card__description flex-row">
+                            <img src="./assets/shopping-cart.png" alt="">
+                            <p>Famila Superstore</p>
+                        </div>
+                        <p class="card__total">$12.90</p>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </section>
+
+    </main>
+</body>
+
+</html>
