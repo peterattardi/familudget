@@ -4,6 +4,8 @@
 
 html {
   min-height: 100vh;
+  background-color: rgb(243, 244, 246);
+  scroll-behavior: smooth;
 }
 
 input::-webkit-outer-spin-button,
@@ -12,9 +14,15 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
+select {
+  appearance: none;
+  text-align: -webkit-center;
+}
+
 /* Firefox */
 input[type="number"] {
   -moz-appearance: textfield;
+  text-align: -webkit-center;
 }
 
 input[type="radio"]:checked + label {
@@ -40,7 +48,7 @@ input[type="radio"]:checked + label {
   }
 
   .input {
-    @apply h-10 border border-gray-400 animation  shadow-md rounded-md overflow-hidden text-center text-lg outline-none;
+    @apply h-12 border  border-gray-400 animation items-center shadow-md rounded-md overflow-hidden text-center text-lg outline-none;
   }
 
   .animation {

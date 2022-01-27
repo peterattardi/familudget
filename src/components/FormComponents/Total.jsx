@@ -15,7 +15,7 @@ const Total = ({
         className="xs:w-full sm:w-[60%] input text-right px-4"
         type="number"
         name="totalNumber"
-        placeholder="42"
+        placeholder="00"
         name="integer"
         onChange={handleFormChange}
         style={{
@@ -27,11 +27,10 @@ const Total = ({
       <p className="text-inherit text-3xl ">{decimalSeparator}</p>
       <input
         className="w-12 input"
-        type="text"
+        type="number"
         name="totalDecimal"
         placeholder="00"
         name="decimal"
-        maxLength="2"
         onChange={handleFormChange}
         style={{
           pointerEvents: modifiable ? "auto" : "none",

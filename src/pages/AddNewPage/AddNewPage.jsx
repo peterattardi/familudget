@@ -17,12 +17,13 @@ const AddNewPage = () => {
   const props = AddNewPageLogic();
   return (
     <motion.div
+      className="h-full w-full"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
     >
-      <div className="flex relative flex-col xs:gap-6 sm:gap-12 justify-center items-center h-full w-max-[600px] py-10 px-4">
+      <div className="flex relative flex-col xs:gap-6  sm:gap-12 justify-center items-center h-full w-max-[600px] py-10 px-4">
         <Link
           to="/"
           className="w-full flex justify-left max-w-[600px] cursor-pointer group"

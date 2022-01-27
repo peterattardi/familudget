@@ -43,7 +43,7 @@ class ExpensesList(APIView):
     '''
     
 
-    def get(self, request, pk):
+    def get(self, request, pk, id):
         '''
         Return a list of objects in which the first field is a day of the month and
         the second field is a list of expenses of that day
@@ -61,7 +61,7 @@ class ExpensesList(APIView):
         ]
         '''
         pk = fromNumberToString(pk)
-        expensesOfTheMonth = ExpenseItem.objects.filter(date__year = pk[:4],date__month = pk[-2:]).order_by('-date')
+        expensesOfTheMonth = ExpenseItem.objects.filter(user = id, date__year = pk[:4],date__month = pk[-2:]).order_by('-date')
         serializer = ExpenseItemSerializer(expensesOfTheMonth, many = True)
         data = {}
         for object in serializer.data:
@@ -85,6 +85,7 @@ class ExpensesList(APIView):
         If a category is not provided the total must be a positive numer: only
         negative expenses belong to a category
         '''
+
         errorMessage = {
             "code": 400,
             "message": "Category only accepted if amount is negative"
@@ -98,26 +99,35 @@ class ExpensesList(APIView):
 
 class ExspenseDetail(APIView):
 
-    def get(self, request, pk):
+    def get(self, request, pk, id):
         try:
             expense = ExpenseItem.objects.get(id=pk)
             serializer = ExpenseItemSerializer(expense, many=False)
+            if(str(serializer.data['user']) != str(id)):
+                return Response({'error':'Item not found'}, status=status.HTTP_401_UNAUTHORIZED)
             return Response(serializer.data)
         except:
             return Response({'error':'Item not found'}, status=status.HTTP_400_BAD_REQUEST)
         
 
-    def put(self, request, pk):
+    def put(self, request, pk, id):
         old_expense = ExpenseItem.objects.get(id=pk)
         new_expense = request.data
         serializer = ExpenseItemSerializer(instance=old_expense, data=new_expense, partial=True)
+        if(str(new_expense["user"])!=str(id)):
+             return Response({'error':'Item not found.'}, status=status.HTTP_400_BAD_REQUEST)
         if serializer.is_valid(raise_exception=True):
-            serializer.save()
+            serializer.save()           
+
         return Response({"success": "Item '{}' updated successfully".format(new_expense['id'])})
     
-    def delete(self, request, pk):
+    def delete(self, request, pk,id):
         try:
-            ExpenseItem.objects.get(id=pk).delete()
+            obj = ExpenseItem.objects.get(id=pk)
+            objSer = ExpenseItemSerializer(obj, many=False)
+            if(str(objSer.data['user']) != str(id)):
+                 return Response({'error':'Item not found'}, status=status.HTTP_400_BAD_REQUEST)
+            obj.delete()
             return Response({"success": "Item '{}' removed successfully".format(pk) })
         except:
             return Response({'error':'Item not found'}, status=status.HTTP_400_BAD_REQUEST)
@@ -134,12 +144,12 @@ def getCategories(request):
         return Response(serializer.data)
 
 @api_view(['GET'])
-def getTotalsPerMonth(request,pk):
+def getTotalsPerMonth(request,pk,id):
     '''
     Returns total loss and gain for a single month
     '''
     pk = fromNumberToString(pk)
-    expenses = ExpenseItem.objects.filter(date__year = pk[:4],date__month = pk[-2:])
+    expenses = ExpenseItem.objects.filter(user=id,date__year = pk[:4],date__month = pk[-2:])
     serializer = ExpenseItemSerializer(expenses, many = True)
     totalIn = 0
     totalOut = 0
@@ -152,10 +162,11 @@ def getTotalsPerMonth(request,pk):
     return Response({'total_in': totalIn, 'total_out': -1*totalOut})
 
 @api_view(['GET'])
-def getTotalsPerCategoryPerMonth(request,pk):
+def getTotalsPerCategoryPerMonth(request,pk,id):
     pk = fromNumberToString(pk)
-    expenses = ExpenseItem.objects.values('category').filter(date__year = pk[:4],date__month = pk[-2:], total__lt = Decimal(0)).order_by('category').annotate(total_sum=Sum('total')).order_by('total_sum')
+    expenses = ExpenseItem.objects.values('category').filter(user=id,date__year = pk[:4],date__month = pk[-2:], total__lt = Decimal(0)).order_by('category').annotate(total_sum=Sum('total')).order_by('total_sum')
     expensesList = list(expenses)
+
     return Response(expensesList)
 
 

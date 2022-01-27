@@ -1,9 +1,12 @@
 import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import AuthContext from "../contexts/AuthContext";
 
 export const Navbar = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const { username, logout } = useContext(AuthContext);
 
   const showNav = () => {
     setIsNavOpen(!isNavOpen);
@@ -20,7 +23,9 @@ export const Navbar = () => {
           onClick={showNav}
           className="flex items-center group hover:bg-white justify-between sm:px-4 sm:py-2 sm:gap-4 xs:py-1 xs:px-4 xs:gap-2 border-solid border  animation border-white rounded-lg"
         >
-          <p className="text-center group-hover:text-black text-white">Peter</p>
+          <p className="text-center group-hover:text-black text-white">
+            {username}
+          </p>
         </div>
       </div>
       {isNavOpen && (
@@ -29,7 +34,9 @@ export const Navbar = () => {
             <Link to="settings/" className="navbar-link">
               <li>Settings</li>
             </Link>
-            <li className="navbar-link">Log Out</li>
+            <Link to="login/" className="navbar-link" onClick={logout}>
+              <li>Log Out</li>
+            </Link>
           </ul>
         </nav>
       )}

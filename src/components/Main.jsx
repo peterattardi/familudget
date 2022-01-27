@@ -23,7 +23,7 @@ export const Main = () => {
     Rent: <GiHouse size={25} />,
     Gifts: <BsGiftFill size={25} />,
     Medications: <RiMedicineBottleFill size={25} />,
-    Travel: <ImAirplane size={25} />,
+    Travel: <ImAirplane size={20} />,
     Objects: <GiCubes size={25} />,
     Clothes: <GiClothes size={25} />,
     Transports: <FaBus size={25} />,

@@ -3,6 +3,7 @@ import { useContext } from "react";
 import ExpenseContext from "../../contexts/ExpensesContext";
 
 import { useNavigate, useParams } from "react-router-dom";
+import AuthContext from "../../contexts/AuthContext";
 
 const AddNewPageLogic = () => {
   const [isADetailPage, setIsADetailPage] = useState(false);
@@ -11,8 +12,8 @@ const AddNewPageLogic = () => {
   const { id } = useParams();
   const [description, setDescription] = useState("");
   const [day, setDay] = useState(new Date().getDate());
-  const [integer, setInteger] = useState(0);
-  const [decimal, setDecimal] = useState(0);
+  const [integer, setInteger] = useState("");
+  const [decimal, setDecimal] = useState("");
   const [category, setCategory] = useState(4);
   const [isOut, setIsOut] = useState(true);
   const [active, setActive] = useState(false);
@@ -20,6 +21,7 @@ const AddNewPageLogic = () => {
   const [modalIsToggled, setModalIsToggled] = useState(false);
   const [deleteModalToggle, setDeleteModalToggle] = useState(false);
   const [showCategories, setShowCategories] = useState(true);
+  const { userId } = useContext(AuthContext);
   const {
     month,
     year,
@@ -31,21 +33,29 @@ const AddNewPageLogic = () => {
 
   /*Tha page is for adding item or modyfing? */
   useEffect(() => {
-    let mounted = true;
-    if (mounted) {
-      if (id === "new") {
-        setModifiable(true);
-        setIsADetailPage(false);
-      } else {
-        setModifiable(false);
-        setIsADetailPage(true);
-        fillData();
-      }
-      fetchCategories();
+    if (id === "new") {
+      setModifiable(true);
+      setIsADetailPage(false);
+    } else {
+      setModifiable(false);
+      setIsADetailPage(true);
+      fillData();
     }
+    fetchCategories();
 
     return () => {
-      mounted = false;
+      setIsADetailPage(false);
+      setModifiable(false);
+      setDescription("");
+      setDay(null);
+      setInteger(0);
+      setDecimal(0);
+      setCategory(null);
+      setIsOut(false);
+      setActive(false);
+      setSaveButtonSpinning(false);
+      setModalIsToggled(false);
+      setShowCategories(false);
     };
   }, []);
 
@@ -102,9 +112,10 @@ const AddNewPageLogic = () => {
         setInteger(e.target.value);
         break;
       case "decimal":
-        if (isNaN(parseInt(e.target.value))) {
-          e.target.value = 0;
-          setDecimal(0);
+        if (isNaN(e.target.value)) {
+          setDecimal("00");
+        } else if (e.target.value > 2) {
+          setDecimal(e.target.value.substring(0, 2));
         } else {
           setDecimal(parseInt(e.target.value));
         }
@@ -136,13 +147,15 @@ const AddNewPageLogic = () => {
   };
 
   const performRequest = async (method) => {
-    const integerToNumber = parseInt(integer);
-    const decimalToNumber = parseInt(decimal);
+    const integerToNumber =
+      isNaN(integer) || integer === "" ? 0 : parseInt(integer);
+    const decimalToNumber =
+      isNaN(decimal) || decimal === "" ? 0 : parseInt(decimal);
     const total =
       isOut == true
         ? -1 * (integerToNumber + decimalToNumber / 100)
         : integerToNumber + decimalToNumber / 100;
-    const user = 1;
+    const user = userId;
     const _day = normalize(day);
     const _month = normalize(month);
     const date = `${year}-${_month}-${_day}`;
@@ -179,12 +192,10 @@ const AddNewPageLogic = () => {
       setModifiable(false);
       setSaveButtonSpinning(false);
       await fillData();
+      setModalIsToggled(true);
 
       setTimeout(() => {
-        setModalIsToggled(true);
-        setTimeout(() => {
-          setModalIsToggled(false);
-        }, 3000);
+        setModalIsToggled(false);
       }, 2000);
     } catch (err) {
       alert("Something went wrong.");

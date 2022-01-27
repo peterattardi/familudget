@@ -6,7 +6,7 @@ import { BsArrowLeft } from "react-icons/bs";
 const Settings = () => {
   const props = SettingsLogic();
   return (
-    <div className="bg-black flex flex-col gap-12  justify-center items-center px-12  h-full">
+    <div className="bg-black flex flex-col gap-12  justify-center items-center px-6  h-full">
       <Link
         to="/"
         className="w-full flex justify-left max-w-[600px] cursor-pointer group"
@@ -47,12 +47,12 @@ const Settings = () => {
             <option value=".">1.420,69$</option>
           </select>
         </div>
-        <div className="flex items-center gap-40 w-full text-right justify-between">
+        <div className="flex items-center xs:gap-4  sm:gap-40 w-full  justify-between">
           <p>Currency: </p>
           <select
             name={props.currency}
             value={props.currencyCode}
-            className="input w-full bg-black border-none"
+            className="input w-full bg-black border-none text-center"
             onChange={props.handleCurrencyChange}
           >
             {currencies.map((currency, i) => {

@@ -3,8 +3,9 @@ Provides context to all the components that need to
 access the familudget api to retrive, modify or delete information
 */
 
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { months } from "../utilities/utility";
+import AuthContext from "./AuthContext";
 
 const ExpenseContext = createContext("");
 
@@ -22,6 +23,7 @@ export const ExpenseProvider = ({ children }) => {
     localStorage.getItem("year") || new Date().getFullYear()
   );
   const API_URL = process.env.REACT_APP_API_URL;
+  const { userId } = useContext(AuthContext);
 
   const fetchData = () => {
     try {
@@ -46,7 +48,9 @@ export const ExpenseProvider = ({ children }) => {
   };
 
   const fetchExpenses = async () => {
-    const response = await fetch(`${API_URL}/expenses/${year}-${month}`);
+    const response = await fetch(
+      `${API_URL}/expenses/${userId}/${year}-${month}`
+    );
     if (response.ok) {
       const data = await response.json();
       setExpenses(data);
@@ -56,7 +60,9 @@ export const ExpenseProvider = ({ children }) => {
   };
 
   const fetchTotals = async () => {
-    const response = await fetch(`${API_URL}/totals/${year}-${month}`);
+    const response = await fetch(
+      `${API_URL}/totals/${userId}/${year}-${month}`
+    );
     if (response.ok) {
       const data = await response.json();
       setTotals(data);
@@ -67,7 +73,7 @@ export const ExpenseProvider = ({ children }) => {
 
   const fetchTotalPerCategories = async () => {
     const response = await fetch(
-      `${API_URL}/totals-per-category/${year}-${month}`
+      `${API_URL}/totals-per-category/${userId}/${year}-${month}`
     );
     if (response.ok) {
       const data = await response.json();
@@ -78,7 +84,7 @@ export const ExpenseProvider = ({ children }) => {
   };
 
   const fetchExpense = async (id) => {
-    const response = await fetch(`${API_URL}/expense/${id}`);
+    const response = await fetch(`${API_URL}/expense/${userId}/${id}`);
     if (response.ok) {
       const data = await response.json();
       return data;
@@ -123,7 +129,7 @@ export const ExpenseProvider = ({ children }) => {
     category = null,
     date = null
   ) => {
-    const response = await fetch(`${API_URL}/expense/${id}`, {
+    const response = await fetch(`${API_URL}/expense/${userId}/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -140,12 +146,12 @@ export const ExpenseProvider = ({ children }) => {
     if (response.ok) {
       const data = await response.json();
     } else {
-      throw new Error("Cannot update item #${id}. Something went wrong.");
+      throw new Error(`Cannot update item #${id}. Something went wrong.`);
     }
   };
 
   const deleteExpense = async (id) => {
-    const response = await fetch(`${API_URL}/expense/${id}`, {
+    const response = await fetch(`${API_URL}/expense/${userId}/${id}`, {
       method: "DELETE",
     });
     if (response.ok) {
