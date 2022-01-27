@@ -156,6 +156,8 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:8000",
     'https://familudget.herokuapp.com',
     'https://familudget.herokuapp.com/',
+    'http://familudget.herokuapp.com',
+    'http://familudget.herokuapp.com/',
 ]
 
 SIMPLE_JWT = {
