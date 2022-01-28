@@ -15,7 +15,7 @@ export const Navbar = () => {
     <header className="flex flex-col items-center w-full">
       <div className="items-center flex justify-between px-6 py-4 gap-6 bg-black w-full">
         <div className="container px-4 py-2 text-center">
-          <p className="text-white w-min xs:text-xl sm:text-3xl font-bold text-left">
+          <p className="text-white w-min xs:text-xl sm:text-3xl font-bold text-left tracking-wider">
             familudget
           </p>
         </div>

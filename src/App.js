@@ -9,17 +9,11 @@ function App() {
   return (
     <div
       className="h-screen"
-      style={{ fontFamily: "Verdana, Geneva, Tahoma, sans-serif" }}
+      style={{ fontFamily: "'Montserrat', sans-serif" }}
     >
       <Router>
         <Routes>
           <Route exact path="login" element={<LoginPage />} />
-
-          {/* <Route path="/" element={<PrivateRoute />}>
-            <Route exact path="/" element={<Dashboard />} />
-            <Route path="item/:id" element={<AddNewPage />} />
-            <Route path="settings/" element={<Settings />} />
-          </Route> */}
 
           <Route
             exact

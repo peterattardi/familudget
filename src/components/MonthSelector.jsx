@@ -26,12 +26,12 @@ const MonthSelector = () => {
         <select
           onChange={handleSelectChange}
           defaultValue={parseInt(month)}
-          className="w-full shadow-xl tracking-wider h-10 text-center text-xl outline-none rounded-md animation  bg-[#FF5733] text-white"
+          className="w-full shadow-xl  tracking-wider h-16 py-4 px-12 text-center text-xl outline-none rounded-md animation  bg-[#FF5733] text-white"
         >
           {months.map(
             (month, i) =>
               i !== 0 && (
-                <option key={i} value={i}>
+                <option className="text-center" key={i} value={i}>
                   {month}
                 </option>
               )

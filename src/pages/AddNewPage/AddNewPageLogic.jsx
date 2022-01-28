@@ -14,7 +14,7 @@ const AddNewPageLogic = () => {
   const [day, setDay] = useState(new Date().getDate());
   const [integer, setInteger] = useState("");
   const [decimal, setDecimal] = useState("");
-  const [category, setCategory] = useState(4);
+  const [category, setCategory] = useState(2);
   const [isOut, setIsOut] = useState(true);
   const [active, setActive] = useState(false);
   const [saveButtonSpinning, setSaveButtonSpinning] = useState(false);

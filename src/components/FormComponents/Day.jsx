@@ -11,7 +11,7 @@ const Day = ({ day, month, year, handleFormChange, modifiable }) => {
         style={{ backgroundColor: modifiable ? "#fff" : "#ddd" }}
       />
       <select
-        className=" input outline-none w-12 bg-transparent "
+        className=" input outline-none w-12 px-3 bg-transparent "
         name="day"
         onChange={handleFormChange}
         value={day}

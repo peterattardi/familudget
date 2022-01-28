@@ -21,7 +21,7 @@ const Settings = () => {
           <p>Year:</p>
           <select
             name="years"
-            className="input w-20 border-none bg-black"
+            className="input w-20 border-none py-2 px-4  h-12 bg-black"
             value={props.year}
             onChange={props.handleChangeYear}
           >
@@ -38,7 +38,7 @@ const Settings = () => {
           <p>Format: </p>
           <select
             onChange={props.handleFormatChange}
-            className="input w-32 border-none bg-black"
+            className="input w-32 border-none py-2 px-4  h-12 bg-black"
             value={props.integerSeparator}
           >
             <option value="," defaultValue>
@@ -52,7 +52,7 @@ const Settings = () => {
           <select
             name={props.currency}
             value={props.currencyCode}
-            className="input w-full bg-black border-none text-center"
+            className="input w-full bg-black border-none py-2 px-24  h-12text-center"
             onChange={props.handleCurrencyChange}
           >
             {currencies.map((currency, i) => {

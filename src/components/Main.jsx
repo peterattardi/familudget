@@ -4,12 +4,15 @@ import Summury from "./Summury";
 import ItemsList from "./ItemsList";
 import AddNewItem from "./AddNewItem";
 import { Link } from "react-router-dom";
-import { MdLocalGroceryStore, MdMovieFilter } from "react-icons/md";
+import {
+  MdLocalGroceryStore,
+  MdMovieFilter,
+  MdOutlineLocalAirport,
+} from "react-icons/md";
 import { BiRestaurant } from "react-icons/bi";
 import { BsFillLightningChargeFill, BsGiftFill } from "react-icons/bs";
 import { RiMentalHealthFill, RiMedicineBottleFill } from "react-icons/ri";
 import { GiHouse, GiCubes, GiClothes } from "react-icons/gi";
-import { ImAirplane } from "react-icons/im";
 import { FaBus } from "react-icons/fa";
 import { useState } from "react";
 
@@ -23,7 +26,7 @@ export const Main = () => {
     Rent: <GiHouse size={25} />,
     Gifts: <BsGiftFill size={25} />,
     Medications: <RiMedicineBottleFill size={25} />,
-    Travel: <ImAirplane size={20} />,
+    Travel: <MdOutlineLocalAirport size={25} />,
     Objects: <GiCubes size={25} />,
     Clothes: <GiClothes size={25} />,
     Transports: <FaBus size={25} />,

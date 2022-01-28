@@ -1,9 +1,8 @@
-import { motion } from "framer-motion";
 import React from "react";
 import { useState } from "react";
 import LoginPageLogic from "./LoginPageLogic";
 import ImageAndPar from "./ImageAndPar";
-import LoginFooter from "./LoginFooter";
+import Footer from "../../components/Footer";
 
 const LoginPage = () => {
   const {
@@ -22,19 +21,17 @@ const LoginPage = () => {
   return (
     <div className="flex flex-col items-center">
       <div className="flex flex-col xs:flex-col text-gray-200 lg:flex-row w-full bg-slate-700 -translate-y-20 -skew-y-[3.5deg] justify-center gap-32 lg:justify-between px-8 lg:px-28 py-32 items-center">
-        <div className="flex flex-col w-full lg:mb-32 skew-y-[3.5deg]  item-center xs:text-center lg:text-left justify-center gap-12">
+        <div className="flex flex-col w-full lg:mb-32 skew-y-[3.5deg]  item-center xs:text-center lg:text-left justify-center gap-20">
           <h1 className="tracking-wide font-bold s:text-5xl lg:text-6xl text ">
             Familudget
           </h1>
-          <p className="text-xl">
-            An app to track your poorness <br /> Andrea fill in{" "}
-          </p>
+          <p className="text-3xl">An app to track your income and expenses.</p>
         </div>
         <div className="flex  w-full  skew-y-[3.5deg]  justify-center items-center">
           {register ? (
             <>
               <form
-                className="grid card absolute -top-14 xs:right-auto lg:right-0 lg:mt-32 max-w-[400px] place-items-center items-center justify-center w-full grid-cols-1 gap-8"
+                className="grid card absolute -top-14 xs:right-auto lg:right-0 lg:mt-32 max-w-[500px] place-items-center items-center justify-center w-full grid-cols-1 gap-8"
                 onSubmit={registerUser}
               >
                 <div className="flex w-[80%] flex-col gap-2">
@@ -149,7 +146,7 @@ const LoginPage = () => {
           ) : (
             <>
               <form
-                className="grid card absolute -top-8 xs:right-auto lg:right-0 lg:mt-32 max-w-[400px] place-items-center items-center justify-center w-full grid-cols-1 gap-8"
+                className="grid card absolute -top-8 xs:right-auto lg:right-0 lg:mt-32 max-w-[500px] place-items-center items-center justify-center w-full grid-cols-1 gap-8"
                 onSubmit={loginUser}
               >
                 <div className="flex w-[80%] flex-col gap-2">
@@ -205,6 +202,7 @@ const LoginPage = () => {
 
                 <input
                   type="submit"
+                  value="Login"
                   className="text-center input w-[40%] text-gray-200 bg-slate-700"
                 />
                 <p className="italic">
@@ -224,33 +222,33 @@ const LoginPage = () => {
         </div>
       </div>
 
-      <div className="flex flex-col items-center mt-96 lg:mt-0 justify-center w-full  px-12">
+      <div className="flex flex-col gap-40 lg:gap-0 items-center mt-96 lg:mt-0 justify-center w-full ">
         <ImageAndPar
-          img={require("../../assets/summury.png")}
-          title="Keep track of your expenses"
-          parag="please fill andreew"
+          img={require("../../assets/summary.png")}
+          title="Categorised overview of your cashflow"
+          parag="Quickly visualize income and expenses in categories, month by month"
           pos={"-1"}
         />
         <ImageAndPar
           img={require("../../assets/listitems.png")}
-          title="Keep track of your expenses"
-          parag="please fill andreew"
+          title="List of individual entries"
+          parag="See how much you have spent or earned, when and on what"
           pos={"1"}
         />
         <ImageAndPar
           img={require("../../assets/addnew.png")}
-          title="Keep track of your expenses"
-          parag="please fill andreew"
+          title="Entry options"
+          parag="Add and edit entries, tags, categories and dates"
           pos={"-1"}
         />
         <ImageAndPar
           img={require("../../assets/settings.png")}
-          title="Keep track of your expenses"
-          parag="please fill andreew"
+          title="Support for many currencies"
+          parag="Specify your preferred settings"
           pos={"1"}
         />
       </div>
-      <LoginFooter />
+      <Footer />
     </div>
   );
 };

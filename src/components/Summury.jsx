@@ -9,10 +9,10 @@ const Summury = ({ icons }) => {
 
   return (
     <div className="card-container w-full">
-      <p>Summury:</p>
+      <p>Summary:</p>
       <div className="card xs:flex-col sm:flex-row items-center  gap-12 justify-center py-4">
         <div
-          className=" shadow-2xl bg-black xs:w-2/4 max-w-[600px]  text-white aspect-square rounded-full flex flex-col items-center gap-4  justify-center "
+          className=" shadow-2xl bg-black xs:w-2/5 max-w-[600px]  text-white aspect-square rounded-full flex flex-col items-center gap-4  justify-center "
           style={
             totals.total_in + totals.total_out > totals.total_in / 5
               ? { backgroundColor: "rgb(76 161 84)" }

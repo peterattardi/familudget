@@ -13,7 +13,7 @@ const Categories = ({
     <>
       {showCategories && (
         <select
-          className="input shadow-xl bg-transparent xs:w-full sm:col-span-2 sm:w-[70%]"
+          className="input shadow-xl py-4 px-12  h-16 bg-transparent xs:w-full sm:col-span-2 sm:w-[70%]"
           name="category"
           onChange={handleFormChange}
           value={defaultCategory.toString()}

@@ -42,7 +42,7 @@ class RegisterUser(APIView):
             if(password1 != password2):
                 message = "Passwords are not the same"
                 return Response(json.dumps(message), status=status.HTTP_400_BAD_REQUEST)
-            if not re.match(r"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$",password1):
+            if not re.match(r"^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})",password1):
                 message = "Passwords invalid"
                 return Response(json.dumps(message), status=status.HTTP_400_BAD_REQUEST)
             User.objects.create_user(email, username, password1)
