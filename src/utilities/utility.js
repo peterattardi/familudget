@@ -77,25 +77,30 @@ Return the number of days in a specific month + checks for lump years
 */
 export const daysOfMonth = (year, month) => {
   let days = [];
-  for (let i = 1; i <= 30; i++) days.push(i);
+  for (let i = 1; i <= 31; i++) days.push(i);
   if (month == 4 || month == 6 || month == 9 || month == 11) {
+    days.pop();
     return days;
   } else if (month == 2) {
     if (year % 4 === 0) {
       if (!(year % 100 === 0)) {
         days.pop();
+        days.pop();
         return days;
       } else {
         if (year % 400) {
           days.pop();
+          days.pop();
           return days;
         } else {
+          days.pop();
           days.pop();
           days.pop();
           return days;
         }
       }
     } else {
+      days.pop();
       days.pop();
       days.pop();
       return days;
