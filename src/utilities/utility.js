@@ -101,7 +101,6 @@ export const daysOfMonth = (year, month) => {
       return days;
     }
   } else {
-    days.push(31);
     return days;
   }
 };
