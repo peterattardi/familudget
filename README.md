@@ -1,3 +1,15 @@
+# Description
+
+Webapp to track your monthly expenses. First attempt to make something with React.
+You can try it out: https://familudget.herokuapp.com/
+
+## Stack
+Django
+React, tailwindcss
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
